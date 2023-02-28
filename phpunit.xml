@@ -1,0 +1,7 @@
+<phpunit>
+  <testsuites>
+    <testsuite name="spint_technology">
+      <directory>tests</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>
