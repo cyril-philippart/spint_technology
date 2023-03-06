@@ -34,19 +34,15 @@ $boardingCards = [
     ],
 ];
 
+// Ajoute chaque carte de voyage au tableau
 $travelBoardingCards = [];
 foreach ($boardingCards as $card) {
     $travelBoardingCards[] = $card;
 }
 
-/* $lastBoardingCard = end($travelBoardingCards);
-dump($lastBoardingCard['to']); */
-
+// Génère une chaîne de caractères décrivant le voyage
 $output = "Voici votre itinéraire :\n";
 foreach ($travelBoardingCards as $card) {
-    dump($card);
-    /* dump($card['type']);
-    dump($card['baggage']); */
     switch ($card['type']) {
         case 'train':
             $output .= "Prenez le train {$card['train']} de {$card['from']} à {$card['to']}. Asseyez-vous au siège {$card['seat']}.\n";
@@ -55,9 +51,6 @@ foreach ($travelBoardingCards as $card) {
             $output .= "Prenez le bus de {$card['from']} à {$card['to']}. Pas d'attribution de siège.\n";
             break;
         case 'avion':
-            /* if ($lastBoardingCard['to'] === "New York JFK") {
-                $output .= "Prenez le vol {$card['vol']} de {$card['from']} à {$card['to']}. Porte {$card['gate']}, siège {$card['seat']}. {$card['baggage']}.\n";
-            } */
             $output .= "Prenez le vol {$card['vol']} de {$card['from']} à {$card['to']}. Porte {$card['gate']}, siège {$card['seat']}. {$card['baggage']}.\n";
             break;
     };
@@ -65,7 +58,5 @@ foreach ($travelBoardingCards as $card) {
 
 }
 $output .= "Vous êtes arrivé à votre destination finale.\n";
-dump($output);
-
 
 return $output;

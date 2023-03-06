@@ -4,10 +4,12 @@ class Travel {
     public static function sortBoardingCards(array $boardingCards): string {
         $travelBoardingCards = [];
 
+        // Ajoute chaque carte de voyage au tableau
         foreach ($boardingCards as $card) {
             $travelBoardingCards[] = $card;
         }
 
+        // Génère une chaîne de caractères décrivant le voyage
         $output = "Voici votre itinéraire :\n";
         foreach ($travelBoardingCards as $card) {
             switch ($card['type']) {
