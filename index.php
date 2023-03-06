@@ -54,6 +54,7 @@ foreach ($travelBoardingCards as $card) {
 // Trie les carte de voyage dans l'ordre du depart à l'arrivée
 $sortedCards = [];
 while (count($sortedCards) < count($boardingCards)) {
+    dump($sortedCards);
     foreach ($travelBoardingCards as $i => $card) {
         if ($card['from'] == $from) {
             $sortedCards[] = $card;
@@ -63,7 +64,6 @@ while (count($sortedCards) < count($boardingCards)) {
         }
     }
 }
-dump($sortedCards);
 
 
 // Génère une chaîne de caractères décrivant le voyage
@@ -84,6 +84,5 @@ foreach ($sortedCards as $card) {
 
 }
 $output .= "Vous êtes arrivé à votre destination finale.\n";
-dump($output);
 
 return $output;
