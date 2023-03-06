@@ -3,11 +3,13 @@
 require_once 'vendor/autoload.php';
 $boardingCards = [
     [
-        'type' => 'train',
-        'from' => 'Madrid',
-        'to' => 'Barcelone',
-        'seat' => '45B',
-        'train' => '78A',
+        'type' => 'avion',
+        'from' => 'Stockholm',
+        'to' => 'New York JFK',
+        'gate' => '22',
+        'seat' => '7B',
+        'vol' => 'SK22',
+        'baggage' => 'Les bagages seront automatiquement transférés de votre dernière étape',
     ],
     [
         'type' => 'bus',
@@ -24,14 +26,13 @@ $boardingCards = [
         'baggage' => 'Dépôt de bagages au guichet 344',
     ],
     [
-        'type' => 'avion',
-        'from' => 'Stockholm',
-        'to' => 'New York JFK',
-        'gate' => '22',
-        'seat' => '7B',
-        'vol' => 'SK22',
-        'baggage' => 'Les bagages seront automatiquement transférés de votre dernière étape',
+        'type' => 'train',
+        'from' => 'Madrid',
+        'to' => 'Barcelone',
+        'seat' => '45B',
+        'train' => '78A',
     ],
+    
 ];
 
 // Ajoute chaque carte de voyage au tableau
@@ -40,9 +41,34 @@ foreach ($boardingCards as $card) {
     $travelBoardingCards[] = $card;
 }
 
+// Trouve la ville de depart
+$from = null;
+foreach ($travelBoardingCards as $card) {
+    $toCities = array_column($travelBoardingCards, 'to');
+    if (!in_array($card['from'], $toCities)) {
+        $from = $card['from'];
+        break;
+    }
+}
+
+// Trie les carte de voyage dans l'ordre du depart à l'arrivée
+$sortedCards = [];
+while (count($sortedCards) < count($boardingCards)) {
+    foreach ($travelBoardingCards as $i => $card) {
+        if ($card['from'] == $from) {
+            $sortedCards[] = $card;
+            $from = $card['to'];
+            unset($travelBoardingCards[$i]);
+            break;
+        }
+    }
+}
+dump($sortedCards);
+
+
 // Génère une chaîne de caractères décrivant le voyage
 $output = "Voici votre itinéraire :\n";
-foreach ($travelBoardingCards as $card) {
+foreach ($sortedCards as $card) {
     switch ($card['type']) {
         case 'train':
             $output .= "Prenez le train {$card['train']} de {$card['from']} à {$card['to']}. Asseyez-vous au siège {$card['seat']}.\n";
@@ -58,5 +84,6 @@ foreach ($travelBoardingCards as $card) {
 
 }
 $output .= "Vous êtes arrivé à votre destination finale.\n";
+dump($output);
 
 return $output;

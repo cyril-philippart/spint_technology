@@ -15,9 +15,13 @@ class TravelTest extends TestCase {
                 'train' => '78A',
             ],
             [
-                'type' => 'bus',
-                'from' => 'Barcelone',
-                'to' => 'Gérone',
+                'type' => 'avion',
+                'from' => 'Stockholm',
+                'to' => 'New York JFK',
+                'gate' => '22',
+                'seat' => '7B',
+                'vol' => 'SK22',
+                'baggage' => 'Les bagages seront automatiquement transférés de votre dernière étape',
             ],
             [
                 'type' => 'avion',
@@ -29,14 +33,11 @@ class TravelTest extends TestCase {
                 'baggage' => 'Dépôt de bagages au guichet 344',
             ],
             [
-                'type' => 'avion',
-                'from' => 'Stockholm',
-                'to' => 'New York JFK',
-                'gate' => '22',
-                'seat' => '7B',
-                'vol' => 'SK22',
-                'baggage' => 'Les bagages seront automatiquement transférés de votre dernière étape',
+                'type' => 'bus',
+                'from' => 'Barcelone',
+                'to' => 'Gérone',
             ],
+            
         ];
 
         // Mon resultat final
